@@ -1,0 +1,25 @@
+{
+  "generator": {
+    "pair": {
+      "imitate": {
+        "title": {
+          "default": "Copy your remote signal\u0000\u0000",
+          "remote": "Identify your remote\u0000\u0000",
+          "wall_switch": "Identify your wall switch\u0000\u0000"
+        },
+        "body": {
+          "default": "Click the button on your remote that is paired to your device.\u0000\u0000",
+          "blinds": "Press the up/down button on the remote that is paired to your blinds.\u0000\u0000",
+          "remote": "Click a button on your remote to pair it.\u0000\u0000",
+          "wall_switch": "Press a random button on your wall switch to pair it.\u0000\u0000",
+          "socket": "Press the button that is paired to your socket.\u0000\u0000"
+        }
+      },
+      "done": {
+        "title": {
+          "default": "Adding device!\u0000\u0000"
+        }
+      }
+    }
+  }
+}

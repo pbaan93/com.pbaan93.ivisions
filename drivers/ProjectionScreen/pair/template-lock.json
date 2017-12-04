@@ -1,0 +1,14 @@
+{
+	"imitate": {
+		"version": "1.0.0",
+		"hash": "fc72967aec15ea69f7d318e619f3c6ff"
+	},
+	"done": {
+		"version": "1.0.0",
+		"hash": "d6e59166843d6d333155514639a41b83"
+	},
+	"test": {
+		"version": "1.0.0",
+		"hash": "a203bb93b80b13fdb72e644249d334ba"
+	}
+}

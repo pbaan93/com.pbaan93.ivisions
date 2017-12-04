@@ -1,0 +1,28 @@
+{
+    "id": "ProjectionScreen",
+    "settings":[],
+    "name": "iVisions Projection Screen",
+    "images": {
+        "large": "/drivers/ProjectionScreen/assets/images/large.png",
+        "small": "/drivers/ProjectionScreen/assets/images/small.png"
+    },
+    "class": "windowcoverings",
+    "capabilities": [ "windowcoverings_state" ],
+    "rf": {
+        "signal": "iVisionsSignal",
+        "logLevel": "info",
+        "captureLevel": "warn",
+        "debounceTime": 500,
+        "minTxInterval": 0
+    },
+    "pair": [
+        {
+            "id": "imitate",
+            "rf_template": "imitate"
+        },
+        {
+            "id": "done",
+            "rf_template": "done"
+        }
+    ]
+}

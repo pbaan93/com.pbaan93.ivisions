@@ -1,0 +1,12 @@
+{
+	"sof": [5032, 640],
+	"words": [
+		[274, 612],
+		[596, 286]
+	],
+	"interval": 3240,
+	"repetitions": 3,
+	"sensitivity": 0.5,
+	"minimalLength": 64,
+	"maximalLength": 64
+}

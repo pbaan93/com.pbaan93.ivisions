@@ -1,0 +1,83 @@
+{
+  "id": "com.pbaan93.ivisions",
+  "sdk": 2,
+  "name": {
+    "en": "iVisions"
+  },
+  "description": {
+    "en": "Adds support for iVisions products."
+  },
+  "category": "appliances",
+  "version": "0.1.0",
+  "compatibility": ">=1.5.0",
+  "author": {
+    "name": "Peter Baan",
+    "email": "peterbaan93@gmail.com",
+    "website": "https://github.com/pbaan93"
+  },
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "signals": {
+    "433": {
+      "iVisionsSignal": {
+        "sof": [
+          5032,
+          640
+        ],
+        "words": [
+          [
+            274,
+            612
+          ],
+          [
+            596,
+            286
+          ]
+        ],
+        "interval": 3240,
+        "repetitions": 3,
+        "sensitivity": 0.5,
+        "minimalLength": 64,
+        "maximalLength": 64
+      }
+    }
+  },
+  "flow": {},
+  "drivers": [
+    {
+      "id": "ProjectionScreen",
+      "name": "iVisions Projection Screen",
+      "images": {
+        "large": "/drivers/ProjectionScreen/assets/images/large.png",
+        "small": "/drivers/ProjectionScreen/assets/images/small.png"
+      },
+      "class": "windowcoverings",
+      "capabilities": [
+        "windowcoverings_state"
+      ],
+      "rf": {
+        "signal": "iVisionsSignal",
+        "logLevel": "info",
+        "captureLevel": "warn",
+        "debounceTime": 500,
+        "minTxInterval": 0
+      },
+      "pair": [
+        {
+          "id": "imitate",
+          "rf_template": "imitate",
+          "navigation": {}
+        },
+        {
+          "id": "done",
+          "rf_template": "done"
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "homey:wireless:433"
+  ]
+}

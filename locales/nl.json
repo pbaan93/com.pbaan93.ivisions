@@ -1,0 +1,25 @@
+{
+  "generator": {
+    "pair": {
+      "imitate": {
+        "title": {
+          "default": "Kopieer het signaal van de afstandsbediening\u0000\u0000",
+          "remote": "Identificeer de afstandsbediening\u0000\u0000",
+          "wall_switch": "Identificeer de wandschakelaar\u0000\u0000"
+        },
+        "body": {
+          "default": "Druk op de knop op de afstandsbediening waarop het apparaat geprogrammeerd is.\u0000\u0000",
+          "blinds": "Druk op de omhoog/omlaag knop van de afstandsbediening waarmee de zonnewering gekoppeld is.\u0000\u0000",
+          "remote": "Klik op een willekeurige knop op de afstandsbediening om hem te koppelen.\u0000\u0000",
+          "wall_switch": "Klik op een willekeurige knop op de wandschakelaar om hem te koppelen.\u0000\u0000",
+          "socket": "Druk op de knop van de afstandsbediening waarmee het apparaat gekoppeld is.\u0000\u0000"
+        }
+      },
+      "done": {
+        "title": {
+          "default": "Apparaat wordt toegevoegd!\u0000\u0000"
+        }
+      }
+    }
+  }
+}
