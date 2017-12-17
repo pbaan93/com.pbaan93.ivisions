@@ -76,25 +76,24 @@ module.exports = RFDevice => class ProjectionScreen extends RFDevice {
             const channel = util.bitStringToBitArray(data.channel);
 
             //crc calculations
-            let crc = parseInt('10100011', 2);
-            crc += parseInt(data.address.substring(0, 7), 2);
-            crc += parseInt(data.address.substring(8, 15), 2);
-            crc += parseInt(data.address.substring(16, 23), 2);
+            var crc = parseInt(data.address.substring(0, 8), 2);
+            crc += parseInt(data.address.substring(8, 16), 2);
+            crc += parseInt(data.address.substring(16, 24), 2);
             crc += parseInt(data.channel, 2);
             crc += parseInt('00000000', 2);
             crc += parseInt(command, 2);
             crc = crc%256;
-            //console.log("crcCalc", crc);
-            var crcCalcBin = crc.toString(2)
+            //console.log("crc", crc);
+            var crcBin = crc.toString(2)
             //if first bits are 0
-            while(crcCalcBin.length < 8)
+            while(crcBin.length < 8)
             {
-                crcCalcBin = "0" + crcCalcBin;
+                crcBin = "0" + crcBin;
             }
-            //console.log("crcCalcBin", crcCalcBin);
+            //console.log("crcBin", crcBin);
             
             //make payload
-            return util.bitStringToBitArray('10100011').concat(address, channel,util.bitStringToBitArray('00000000'), util.bitStringToBitArray(command), util.bitStringToBitArray(crcCalcBin));
+            return util.bitStringToBitArray('10100011').concat(address, channel,util.bitStringToBitArray('00000000'), util.bitStringToBitArray(command), util.bitStringToBitArray(crcBin));
 
         }
         return null;
