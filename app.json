@@ -48,10 +48,40 @@
   "drivers": [
     {
       "id": "ProjectionScreen",
-      "name": "iVisions Projection Screen",
+      "name": "Projection Screen",
       "images": {
         "large": "/drivers/ProjectionScreen/assets/images/large.png",
         "small": "/drivers/ProjectionScreen/assets/images/small.png"
+      },
+      "class": "windowcoverings",
+      "capabilities": [
+        "windowcoverings_state"
+      ],
+      "rf": {
+        "signal": "iVisionsSignal",
+        "logLevel": "info",
+        "captureLevel": "warn",
+        "debounceTime": 500,
+        "minTxInterval": 0
+      },
+      "pair": [
+        {
+          "id": "imitate",
+          "rf_template": "imitate",
+          "navigation": {}
+        },
+        {
+          "id": "done",
+          "rf_template": "done"
+        }
+      ]
+    },
+    {
+      "id": "ProjectorLift",
+      "name": "Projector Lift",
+      "images": {
+        "large": "/drivers/ProjectorLift/assets/images/large.png",
+        "small": "/drivers/ProjectorLift/assets/images/small.png"
       },
       "class": "windowcoverings",
       "capabilities": [

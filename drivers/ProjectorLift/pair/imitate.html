@@ -1,13 +1,11 @@
 <script>
 	var options = {
 		// The id of the template. This should equal the id in your app.json.
-		id: 'program',
+		id: 'imitate',
 		// The title of the pair window
-		title: 'generator.pair.program.title.default',
+		title: 'generator.pair.imitate.title.default',
 		// The body text
-		body: 'generator.pair.program.body.default',
-		// The label of the button that the user can click start sending the pair signal
-		buttonLabel: 'generator.pair.program.programbutton.default',
+		body: 'generator.pair.imitate.body.default',
 		// The width of the svg
 		svgWidth: '80vw',
 		// The height of the svg
@@ -15,7 +13,7 @@
 		// If the svghighlighter should start highlighting with the last received frame
 		initWithDeviceData: false,
 		// The svg that should be displayed to the user. This could be an svg string e.g. '<svg><path>...</path></svg>' or an url
-		svg: '../../../assets/RFDriver/svg/default.svg',
+		svg: '../assets/remote.svg',
 	};
 </script>
 
@@ -33,11 +31,8 @@
 <div class="centered-container">
 	<div id="image-container"></div>
 	<div id="body"><span class="content"></span></div>
-	<div class="programAnimation" id="sendProgramSignalBackground" style="display:none;"></div>
-	<i class="loading fa fa-cog fa-spin programAnimation" id="sendProgramSignalSpinner" style="display:none;"></i>
-	<div id="button-container">
-		<button id="program_button" class="button"></button>
-	</div>
+	<div class="foundAnimation" id="foundBackground" style="display:none;"></div>
+	<i class="fa fa-check-circle foundAnimation" id="found" style="display:none;" aria-hidden="true"></i>
 </div>
 
 <script>
@@ -49,48 +44,52 @@
 	$body.find('.content').html(__(options.body));
 	var $imageContainer = $view.find('#image-container');
 	$imageContainer.css('width', options.svgWidth).css('height', options.svgHeight);
-	var $programElems = $view.find('.programAnimation');
 
 	parseSvg(options.svg, function (svg) {
 		$imageContainer.html(svg);
 		$imageContainer.highlight();
 	});
 
-	var $programButton = $view.find('#program_button');
-	$programButton.html(__(options.buttonLabel));
-	$programButton.on('click', function (e) {
-		$programElems.show();
-		Homey.emit('program_send', function (err) {
-			$programElems.hide();
-			if (err) {
-				showErrorMessage(err);
-				return;
-			}
-			nextView();
-		});
-		e.stopPropagation();
-		return false;
-	});
-
-	Homey.emit('program', function (err, device) {
-		const dataKey = JSON.stringify(device.data);
-		window.selected_devices = [dataKey];
-		window.found_devices = {};
-		window.found_devices[dataKey] = device;
+	var found = false;
+	Homey.on('frame', function (data) {
+		console.log('GOT FRAME', data);
+		if (!found) {
+			found = true;
+			Homey.emit('set_device', { data: data }, function (err, deviceState) {
+				if (err) {
+					if ((err.message || err) !== '433_generator.error.invalid_device') {
+						showErrorMessage(err);
+					}
+					found = false;
+					return;
+				}
+				const dataKey = JSON.stringify(deviceState.data);
+				window.selected_devices = [dataKey];
+				window.found_devices = {};
+				window.found_devices[dataKey] = deviceState;
+				var $foundElems = $view.find('.foundAnimation');
+				$foundElems.show();
+				setTimeout(function () {
+					$foundElems.addClass('fadeOut');
+					setTimeout(nextView, 400);
+				}, 500);
+			});
+		}
 	});
 </script>
 
 <style>
-	#sendProgramSignalSpinner {
+	#found {
 		z-index: 2;
 		position: absolute;
-		top: 25vh;
+		top: 20vh;
 		left: 38vw;
-		font-size: 9vh;
+		font-size: 30vh;
+		color: #080;
 		opacity: 1;
 	}
 
-	#sendProgramSignalBackground {
+	#foundBackground {
 		z-index: 1;
 		top: 0;
 		bottom: 0;
@@ -99,6 +98,15 @@
 		position: absolute;
 		background-color: #FFF;
 		opacity: 0.8;
+	}
+
+	.fadeOut {
+		-webkit-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-ms-transition: all 0.5s ease-in-out;
+		-o-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+		opacity: 0 !important;
 	}
 </style>
 <!--END OF TEMPLATE-->
