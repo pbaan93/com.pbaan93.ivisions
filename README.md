@@ -1,7 +1,7 @@
 # iVisions
 
 Control your iVisions projection screen or projector lift with Homey! 
-This app allows you to connect to any iVisions product fitted with the iViConnect system (all motorized projection screen series and projector lifts, for more information: [www.i-visions.com](www.i-visions.com)). It works with RF and will function even if there is no line of sight between your Homey device and iVisions product.
+This app allows you to connect to any iVisions product fitted with the iViConnect system (all motorized projection screen series and projector lifts, for more information: [www.i-visions.com](http://www.i-visions.com)). It works with RF and will function even if there is no line of sight between your Homey device and iVisions product.
 
 ## Supported Languages:
 * English
